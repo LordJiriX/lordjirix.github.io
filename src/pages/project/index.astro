@@ -1,0 +1,111 @@
+---
+const projects = [
+    { id: 1, title: "Project One", description: "Description for project one", tags: ["astro", "javascript"] },
+    { id: 2, title: "Project Two", description: "Description for project two", tags: ["css", "html"] },
+    { id: 3, title: "Project Three", description: "Description for project three", tags: ["astro", "css"] },
+];
+
+let searchQuery = "";
+let selectedTag = "";
+
+function filterProjects() {
+    return projects.filter((project) => {
+        const matchesSearch = project.title.toLowerCase().includes(searchQuery.toLowerCase());
+        const matchesTag = selectedTag ? project.tags.includes(selectedTag) : true;
+        return matchesSearch && matchesTag;
+    });
+}
+---
+<html>
+    <head>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f4f4f9;
+            }
+            .container {
+                max-width: 800px;
+                margin: 2rem auto;
+                padding: 1rem;
+                background: #fff;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+            .filter-bar {
+                display: flex;
+                gap: 1rem;
+                margin-bottom: 1rem;
+            }
+            .filter-bar input,
+            .filter-bar select {
+                padding: 0.5rem;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                font-size: 1rem;
+            }
+            .project-list {
+                list-style: none;
+                padding: 0;
+            }
+            .project-item {
+                padding: 1rem;
+                margin-bottom: 1rem;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                background: #f9f9f9;
+                transition: transform 0.2s ease, box-shadow 0.2s ease;
+            }
+            .project-item:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+            .project-item a {
+                text-decoration: none;
+                color: #007acc;
+                font-weight: bold;
+            }
+            .project-item p {
+                margin: 0.5rem 0 0;
+                color: #555;
+            }
+            .tags {
+                margin-top: 0.5rem;
+            }
+            .tag {
+                display: inline-block;
+                padding: 0.25rem 0.5rem;
+                margin-right: 0.5rem;
+                background: #007acc;
+                color: #fff;
+                border-radius: 4px;
+                font-size: 0.875rem;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="filter-bar">
+                <input
+                    type="text"
+                    placeholder="Search projects..."
+                    oninput="searchQuery = this.value; renderProjects();"
+                />
+                <select onchange="selectedTag = this.value; renderProjects();">
+                    <option value="">All Tags</option>
+                    
+                </select>
+            </div>
+            
+            <ul class="project-list" id="project-list">
+                <h1>Something is wrong</h1>
+                <!-- Projects will be rendered here -->
+            </ul>
+        </div>
+        
+        <script>
+           
+        </script>
+    </body>
+</html>

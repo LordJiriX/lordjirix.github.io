@@ -1,0 +1,140 @@
+---
+const project = {
+    title: "TLX Fuels",
+    description: "Innovative fuel solutions for a sustainable future.",
+    image: "/images/tlx-fuels.jpg",
+    details: [
+        { label: "Category", value: "Energy" },
+        { label: "Launch Date", value: "2023-10-01" },
+        { label: "Status", value: "Active" },
+    ],
+};
+---
+
+<style>
+    :root {
+        --primary-color: #0078d4;
+        --secondary-color: #f4f4f4;
+        --text-color: #333;
+        --border-radius: 8px;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: var(--secondary-color);
+        color: var(--text-color);
+    }
+
+    .project-container {
+        max-width: 800px;
+        margin: 2rem auto;
+        background: #fff;
+        border-radius: var(--border-radius);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+
+    .project-header {
+        background: var(--primary-color);
+        color: #fff;
+        padding: 1.5rem;
+        text-align: center;
+    }
+
+    .project-header h1 {
+        margin: 0;
+        font-size: 2rem;
+    }
+
+    .project-image {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .project-content {
+        padding: 1.5rem;
+    }
+
+    .project-description {
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+    }
+
+    .project-details {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .project-details li {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .project-details li:last-child {
+        border-bottom: none;
+    }
+
+    .project-details label {
+        font-weight: bold;
+    }
+    .topnav {
+  overflow: hidden;
+  background-color: #333;
+
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+@media screen and (max-width: 400px) {
+  .topnav a {
+    float: none;
+    width: 100%;
+  }
+</style>
+<div class="topnav">
+    <a href="https://www.curseforge.com/members/lordjirix/projects">CourseForge</a>
+    <a href="https://modrinth.com/user/LordJiriX">Modrinth</a>
+    <a href="https://github.com/LordJiriX/">Github</a>
+    <a href="https://lordjirix.github.io">Home</a>
+       </div>
+<div class="project-container">
+    
+    <div class="project-header">
+        <h1>{project.title}</h1>
+    </div>
+    <div class="topnav">
+    <a href="https://www.curseforge.com/members/lordjirix/projects">Download</a>
+    <a href="https://modrinth.com/user/LordJiriX">Source</a>
+    <a href="https://github.com/LordJiriX/">Chanlelog</a>
+    <a href="https://lordjirix.github.io">Home</a>
+       </div>
+    <img src={project.image} alt={project.title} class="project-image" />
+    <div class="project-content">
+        <p class="project-description">{project.description}</p>
+        <ul class="project-details">
+            {project.details.map(detail => (
+                <li>
+                    <label>{detail.label}:</label>
+                    <span>{detail.value}</span>
+                </li>
+            ))}
+        </ul>
+    </div>
+</div>
