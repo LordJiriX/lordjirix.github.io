@@ -1,0 +1,75 @@
+---
+const posts = [
+  {
+    title: "První článek",
+    slug: "prvni-clanek",
+    date: "2025-06-10",
+    content: "Toto je obsah prvního článku. Vítej na blogu!"
+  },
+  {
+    title: "Druhý článek",
+    slug: "druhy-clanek",
+    date: "2025-06-09",
+    content: "Toto je druhý příspěvek. Více obsahu brzy!"
+  }
+];
+
+const postSlug = Astro.url.searchParams.get('post');
+const post = posts.find(p => p.slug === postSlug);
+---
+
+<html lang="cs">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Jednoduchý Blog</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        max-width: 700px;
+        margin: 2rem auto;
+        padding: 1rem;
+        line-height: 1.6;
+      }
+      a {
+        color: #0070f3;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      h1, h2 {
+        color: #333;
+      }
+      .post-list li {
+        margin-bottom: 1rem;
+      }
+      .back-link {
+        display: inline-block;
+        margin-top: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>📚 Můj Blog</h1>
+
+    {post ? (
+      <>
+        <h2>{post.title}</h2>
+        <p><small>{post.date}</small></p>
+        <p>{post.content}</p>
+        <a class="back-link" href="/blog">← Zpět na seznam</a>
+      </>
+    ) : (
+      <>
+        <ul class="post-list">
+          {posts.map(post => (
+            <li>
+              <a href={`/blog?post=${post.slug}`}>{post.title}</a> <br />
+              <small>{post.date}</small>
+            </li>
+          ))}
+        </ul>
+      </>
+    )}
+  </body>
+</html>
