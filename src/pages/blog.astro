@@ -1,18 +1,28 @@
 ---
 ---
 
-<html lang="cs">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Statický Blog</title>
+    <title>Statický Blog s Dark Mode</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
       :root {
         --bg: #f9fafb;
         --text: #1f2937;
-        --accent: #6366f1;
+        --accent: #4f46e5;
         --card-bg: #ffffff;
         --card-border: #e5e7eb;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #111827;
+          --text: #f3f4f6;
+          --accent: #818cf8;
+          --card-bg: #1f2937;
+          --card-border: #374151;
+        }
       }
 
       * {
@@ -29,6 +39,7 @@
         max-width: 800px;
         margin: 0 auto;
         line-height: 1.7;
+        transition: background 0.3s ease, color 0.3s ease;
       }
 
       h1 {
@@ -45,7 +56,7 @@
         padding: 1.5rem;
         margin-bottom: 1.5rem;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
       }
 
       .post:hover {
@@ -81,30 +92,32 @@
     </style>
   </head>
   <body>
-    <h1>📝 Můj Blog</h1>
+    <h1>LordJiriX`s Blog</h1>
+<!--
 
     <div class="post">
-      <div class="post-title">První článek</div>
-      <div class="post-date">10. června 2025</div>
+      <div class="post-title"></div>
+      <div class="post-date"></div>
       <div class="post-content">
-        Toto je obsah prvního článku. Vítej na mém statickém blogu bez dynamiky!
+        Hi
       </div>
     </div>
 
     <div class="post">
-      <div class="post-title">Druhý článek</div>
-      <div class="post-date">9. června 2025</div>
+      <div class="post-title"></div>
+      <div class="post-date"></div>
       <div class="post-content">
-        Druhý příspěvek je zde. Všechno je statické, žádný JS, žádné přesměrování. Jen HTML a CSS.
+        
       </div>
     </div>
 
     <div class="post">
-      <div class="post-title">Třetí článek</div>
-      <div class="post-date">8. června 2025</div>
+      <div class="post-title"></div>
+      <div class="post-date"></div>
       <div class="post-content">
-        Třetí článek přidáváme čistě ručně. Ideální pro malé blogy bez backendu.
+        
       </div>
     </div>
+-->
   </body>
 </html>
