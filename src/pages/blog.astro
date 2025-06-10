@@ -22,54 +22,114 @@ const post = posts.find(p => p.slug === postSlug);
   <head>
     <meta charset="UTF-8" />
     <title>Jednoduchý Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
+      :root {
+        --bg: #f9f9fb;
+        --fg: #1a1a1a;
+        --accent: #4f46e5;
+        --card: #ffffff;
+        --border: #e0e0e0;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
       body {
-        font-family: sans-serif;
-        max-width: 700px;
-        margin: 2rem auto;
-        padding: 1rem;
-        line-height: 1.6;
+        margin: 0;
+        padding: 2rem 1rem;
+        font-family: system-ui, sans-serif;
+        background-color: var(--bg);
+        color: var(--fg);
+        max-width: 800px;
+        margin-inline: auto;
       }
-      a {
-        color: #0070f3;
+
+      h1 {
+        text-align: center;
+        margin-bottom: 2rem;
+        font-size: 2.25rem;
+        color: var(--accent);
+      }
+
+      .post-list {
+        display: grid;
+        gap: 1.5rem;
+      }
+
+      .card {
+        background: var(--card);
+        padding: 1.25rem 1.5rem;
+        border: 1px solid var(--border);
+        border-radius: 1rem;
+        transition: box-shadow 0.2s ease, transform 0.1s ease;
+      }
+
+      .card:hover {
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        transform: translateY(-2px);
+      }
+
+      .card a {
+        color: var(--accent);
         text-decoration: none;
+        font-weight: 600;
+        font-size: 1.125rem;
       }
-      a:hover {
+
+      .card a:hover {
         text-decoration: underline;
       }
-      h1, h2 {
-        color: #333;
+
+      small {
+        color: #666;
+        font-size: 0.9rem;
       }
-      .post-list li {
-        margin-bottom: 1rem;
+
+      article h2 {
+        font-size: 1.75rem;
+        margin-bottom: 0.5rem;
+        color: var(--accent);
       }
+
+      article p {
+        font-size: 1.05rem;
+        line-height: 1.7;
+      }
+
       .back-link {
         display: inline-block;
         margin-top: 2rem;
+        text-decoration: none;
+        color: var(--accent);
+        font-weight: 500;
+      }
+
+      .back-link:hover {
+        text-decoration: underline;
       }
     </style>
   </head>
   <body>
-    <h1>📚 Můj Blog</h1>
+    <h1>📝 Můj Blog</h1>
 
     {post ? (
-      <>
+      <article>
         <h2>{post.title}</h2>
         <p><small>{post.date}</small></p>
         <p>{post.content}</p>
         <a class="back-link" href="/blog">← Zpět na seznam</a>
-      </>
+      </article>
     ) : (
-      <>
-        <ul class="post-list">
-          {posts.map(post => (
-            <li>
-              <a href={`/blog?post=${post.slug}`}>{post.title}</a> <br />
-              <small>{post.date}</small>
-            </li>
-          ))}
-        </ul>
-      </>
+      <div class="post-list">
+        {posts.map(post => (
+          <div class="card">
+            <a href={`/blog?post=${post.slug}`}>{post.title}</a><br />
+            <small>{post.date}</small>
+          </div>
+        ))}
+      </div>
     )}
   </body>
 </html>
