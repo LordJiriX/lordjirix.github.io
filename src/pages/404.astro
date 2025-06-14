@@ -1,0 +1,92 @@
+---
+---
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>404 - Page Not Found</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      :root {
+        --color-bg-light: #fdfdfd;
+        --color-bg-dark: #121212;
+        --color-text-light: #121212;
+        --color-text-dark: #fdfdfd;
+        --color-primary: #0077ff;
+      }
+
+      html.light {
+        background-color: var(--color-bg-light);
+        color: var(--color-text-light);
+      }
+
+      html.dark {
+        background-color: var(--color-bg-dark);
+        color: var(--color-text-dark);
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        text-align: center;
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+      h1 {
+        font-size: 4rem;
+        margin: 0.5em 0;
+      }
+
+      p {
+        margin-bottom: 2em;
+        font-size: 1.2rem;
+      }
+
+      button {
+        background-color: var(--color-primary);
+        color: white;
+        border: none;
+        padding: 0.7em 1.4em;
+        margin: 0.5em;
+        font-size: 1rem;
+        border-radius: 0.4em;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #005fcc;
+      }
+    </style>
+    <script>
+      // Apply saved or preferred theme
+      const savedTheme = localStorage.getItem("theme");
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const theme = savedTheme || (prefersDark ? "dark" : "light");
+      document.documentElement.classList.add(theme);
+    </script>
+  </head>
+  <body>
+    <h1>404</h1>
+    <p>The page you are looking for does not exist.</p>
+    <div>
+      <button onclick="history.back()">Go Back</button>
+      <button onclick="toggleTheme()">Toggle Theme</button>
+    </div>
+    <script>
+      function toggleTheme() {
+        const html = document.documentElement;
+        const isDark = html.classList.contains('dark');
+        html.classList.remove('light', 'dark');
+        const newTheme = isDark ? 'light' : 'dark';
+        html.classList.add(newTheme);
+        localStorage.setItem('theme', newTheme);
+      }
+    </script>
+  </body>
+</html>
