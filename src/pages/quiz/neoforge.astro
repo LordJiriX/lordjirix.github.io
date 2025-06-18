@@ -1,135 +1,240 @@
 ---
 ---
-<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Minecraft Neoforge 1.21.X Quiz</title>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Minecraft NeoForge 1.21.X Quiz</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #222;
-            color: #fff;
-            text-align: center;
-            padding: 20px;
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #0d1f0d;
+        color: #e0ffe0;
+        text-align: center;
+        padding: 20px;
+        background-image: linear-gradient(145deg, #0a0, #050);
+        animation: bgFade 10s infinite alternate;
+      }
+
+      @keyframes bgFade {
+        0% {
+          background-image: linear-gradient(145deg, #0a0, #050);
         }
-        .container {
-            max-width: 600px;
-            margin: auto;
-            background: #333;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+        100% {
+          background-image: linear-gradient(145deg, #070, #0f0);
         }
-        h1 {
-            color: #ffcc00;
+      }
+
+      .container {
+        max-width: 600px;
+        margin: auto;
+        background: rgba(0, 50, 0, 0.9);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 15px rgba(0, 255, 0, 0.4);
+        filter: drop-shadow(0 0 10px #0f0);
+        transition: transform 0.3s ease;
+      }
+
+      .container:hover {
+        transform: scale(1.02);
+      }
+
+      h1 {
+        color: #aaffaa;
+        text-shadow: 0 0 5px #0f0;
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          text-shadow: 0 0 5px #0f0;
         }
-        .question {
-            font-size: 20px;
-            margin-bottom: 10px;
+        50% {
+          text-shadow: 0 0 15px #0f0;
         }
-        .options button {
-            background: #ffcc00;
-            border: none;
-            padding: 10px;
-            margin: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            border-radius: 5px;
-            transition: 0.3s;
+      }
+
+      .question {
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+
+      .options button {
+        background: #00aa00;
+        border: none;
+        padding: 10px 20px;
+        margin: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        border-radius: 8px;
+        color: #fff;
+        box-shadow: 0 0 5px #0f0;
+        transition: all 0.3s ease;
+      }
+
+      .options button:hover {
+        background: #00dd00;
+        transform: scale(1.05);
+        filter: brightness(1.2);
+      }
+
+      .score {
+        font-size: 18px;
+        margin-top: 20px;
+        color: #b3ffb3;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      #nextBtn {
+        margin-top: 15px;
+        background: #228822;
+        color: #fff;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 6px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      #nextBtn:hover {
+        background-color: #33cc33;
+        box-shadow: 0 0 10px #0f0;
+      }
+
+      .bottom-img {
+        width: 100%;
+        height: auto;
+        margin-top: 20px;
+        border-radius: 10px;
+        filter: hue-rotate(90deg) contrast(1.2) brightness(0.9);
+      }
+
+      #result {
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 20px;
+        color: #ccffcc;
+        animation: fadeIn 1s ease-in;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
         }
-        .options button:hover {
-            background: #ffaa00;
+        to {
+          opacity: 1;
         }
-        .score {
-            font-size: 18px;
-            margin-top: 20px;
-        }
-        .hidden {
-            display: none;
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <h1>Minecraft Neoforge 1.21.x Quiz</h1>
-        <p id="question" class="question"></p>
-        <div id="options" class="options"></div>
-        <button id="nextBtn" class="hidden" onclick="nextQuestion()">Next</button>
-        <p id="score" class="score"></p>
-        <p id="result" class="hidden"></p>
+      <h1>Minecraft NeoForge 1.21.x Quiz</h1>
+      <p id="question" class="question"></p>
+      <div id="options" class="options"></div>
+      <button id="nextBtn" class="hidden" onclick="nextQuestion()">Next</button>
+      <img src="/banner.webp" alt="IC" class="bottom-img" />
+      <p id="score" class="score"></p>
+      <p id="result" class="hidden"></p>
     </div>
 
-    <script>
-        const questions = [
-            { question: "Which method is typically used to register custom blocks in NeoForge?", options: ["registerBlocks()", "ModBlocks.init()", "Through DeferredRegister<Block>", "With GameRegistry.registerBlock()"], answer: "Through DeferredRegister<Block>" },
-            { question: "What event should you subscribe to for adding server-side commands?", options: ["ServerStartEvent", "RegisterCommandsEvent", "CommandInitEvent", "ServerCommandEvent"], answer: "RegisterCommandsEvent" },
-            { question: "Which lifecycle event is best for initializing client-side renderers?", options: ["FMLClientSetupEvent", "FMLCommonSetupEvent", "FMLConstructModEvent", "RenderInitEvent"], answer: "FMLClientSetupEvent" },
-            { question: "What is the correct way to handle networking in NeoForge?", options: ["Use SimpleChannel from net.neoforged.neoforge.network", "Use PacketManager from minecraft.networking", "Directly write TCP packets", "NeoForge does not support custom packets"], answer: "Use SimpleChannel from net.neoforged.neoforge.network" },
-             { question: "How are capabilities registered in NeoForge ?", options: [" Using CapabilityManager.INSTANCE.register()", "With CapabilityToken<> and EventSubscriber", "Using ForgeCapabilities.register()", "Capabilities are deprecated"], answer: "With CapabilityToken<> and EventSubscriber" },
-             { question: "Which file controls mod dependencies in NeoForge?", options: ["modinfo.json", "mod.properties", "mods.toml", "dependencies.neoforge"], answer: "mods.toml" },
-             
-        ];
+    <script is:raw>
+      const questions = [
+        {
+          question: "Which method is typically used to register custom blocks in NeoForge?",
+          options: ["registerBlocks()", "ModBlocks.init()", "Through DeferredRegister<Block>", "With GameRegistry.registerBlock()"],
+          answer: "Through DeferredRegister<Block>"
+        },
+        {
+          question: "What event should you subscribe to for adding server-side commands?",
+          options: ["ServerStartEvent", "RegisterCommandsEvent", "CommandInitEvent", "ServerCommandEvent"],
+          answer: "RegisterCommandsEvent"
+        },
+        {
+          question: "Which lifecycle event is best for initializing client-side renderers?",
+          options: ["FMLClientSetupEvent", "FMLCommonSetupEvent", "FMLConstructModEvent", "RenderInitEvent"],
+          answer: "FMLClientSetupEvent"
+        },
+        {
+          question: "What is the correct way to handle networking in NeoForge?",
+          options: ["Use SimpleChannel from net.neoforged.neoforge.network", "Use PacketManager from minecraft.networking", "Directly write TCP packets", "NeoForge does not support custom packets"],
+          answer: "Use SimpleChannel from net.neoforged.neoforge.network"
+        },
+        {
+          question: "How are capabilities registered in NeoForge ?",
+          options: [" Using CapabilityManager.INSTANCE.register()", "With CapabilityToken<> and EventSubscriber", "Using ForgeCapabilities.register()", "Capabilities are deprecated"],
+          answer: "With CapabilityToken<> and EventSubscriber"
+        },
+        {
+          question: "Which file controls mod dependencies in NeoForge?",
+          options: ["modinfo.json", "mod.properties", "mods.toml", "dependencies.neoforge"],
+          answer: "mods.toml"
+        }
+      ];
 
-        let currentQuestion = 0;
-        let score = 0;
+      let currentQuestion = 0;
+      let score = 0;
 
-        function showQuestion() {
-            const q = questions[currentQuestion];
-            document.getElementById("question").innerText = q.question;
-            const optionsDiv = document.getElementById("options");
-            optionsDiv.innerHTML = "";
-            document.getElementById("nextBtn").classList.add("hidden");
-            document.getElementById("result").classList.add("hidden");
-            
-            q.options.forEach(option => {
-                const btn = document.createElement("button");
-                btn.innerText = option;
-                btn.onclick = () => checkAnswer(option, btn);
-                optionsDiv.appendChild(btn);
-            });
+      function showQuestion() {
+        const q = questions[currentQuestion];
+        document.getElementById("question").innerText = q.question;
+        const optionsDiv = document.getElementById("options");
+        optionsDiv.innerHTML = "";
+        document.getElementById("nextBtn").classList.add("hidden");
+        document.getElementById("result").classList.add("hidden");
+
+        q.options.forEach(option => {
+          const btn = document.createElement("button");
+          btn.innerText = option;
+          btn.onclick = () => checkAnswer(option, btn);
+          optionsDiv.appendChild(btn);
+        });
+      }
+
+      function checkAnswer(option, btn) {
+        if (option === questions[currentQuestion].answer) {
+          score++;
+          btn.style.backgroundColor = "#00cc66";
+        } else {
+          btn.style.backgroundColor = "#cc0000";
+        }
+        document.getElementById("score").innerText = `Score: ${score}/${questions.length}`;
+        document.getElementById("nextBtn").classList.remove("hidden");
+      }
+
+      function nextQuestion() {
+        if (currentQuestion + 1 < questions.length) {
+          currentQuestion++;
+          showQuestion();
+        } else {
+          finishQuiz();
+        }
+      }
+
+      function finishQuiz() {
+        document.getElementById("question").innerText = "Quiz done";
+        document.getElementById("options").innerHTML = "";
+        document.getElementById("nextBtn").classList.add("hidden");
+
+        let resultText = "";
+        if (score === questions.length) {
+          resultText = "Perfect! You did your best!";
+        } else if (score > questions.length / 2) {
+          resultText = "Good score, but keep improving!";
+        } else {
+          resultText = "Time to learn NeoForge!";
         }
 
-        function checkAnswer(option, btn) {
-            if (option === questions[currentQuestion].answer) {
-                score++;
-                btn.style.backgroundColor = "#00cc66";
-            } else {
-                btn.style.backgroundColor = "#cc0000";
-            }
-            document.getElementById("score").innerText = `Score: ${score}/${questions.length}`;
-            document.getElementById("nextBtn").classList.remove("hidden");
-        }
+        document.getElementById("result").innerText = resultText;
+        document.getElementById("result").classList.remove("hidden");
+      }
 
-        function nextQuestion() {
-            if (currentQuestion + 1 < questions.length) {
-                currentQuestion++;
-                showQuestion();
-            } else {
-                finishQuiz();
-            }
-        }
-
-        function finishQuiz() {
-            document.getElementById("question").innerText = "Quiz done";
-            document.getElementById("options").innerHTML = "";
-            document.getElementById("nextBtn").classList.add("hidden");
-
-            let resultText = "";
-            if (score === questions.length) {
-                resultText = "Perfect you done best!";
-            } else if (score > questions.length / 2) {
-                resultText = "Good score but try be better";
-            } else {
-                resultText = "Try learn NeoForge";
-            }
-
-            document.getElementById("result").innerText = resultText;
-            document.getElementById("result").classList.remove("hidden");
-        }
-
-        showQuestion();
+      window.onload = showQuestion;
     </script>
-</body>
+  </body>
 </html>
-      
