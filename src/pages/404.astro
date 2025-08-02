@@ -64,6 +64,14 @@
       }
     </style>
     <script>
+      function toggleTheme() {
+        const html = document.documentElement;
+        const isDark = html.classList.contains('dark');
+        html.classList.remove('light', 'dark');
+        const newTheme = isDark ? 'light' : 'dark';
+        html.classList.add(newTheme);
+        localStorage.setItem('theme', newTheme);
+      }
       // Apply saved or preferred theme
       const savedTheme = localStorage.getItem("theme");
       const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -78,15 +86,6 @@
       <button onclick="history.back()">Go Back</button>
       <button onclick="toggleTheme()">Toggle Theme</button>
     </div>
-    <script>
-      function toggleTheme() {
-        const html = document.documentElement;
-        const isDark = html.classList.contains('dark');
-        html.classList.remove('light', 'dark');
-        const newTheme = isDark ? 'light' : 'dark';
-        html.classList.add(newTheme);
-        localStorage.setItem('theme', newTheme);
-      }
-    </script>
+  
   </body>
 </html>
