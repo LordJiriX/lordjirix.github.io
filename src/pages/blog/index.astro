@@ -1,0 +1,22 @@
+---
+const posts = Object.entries(import.meta.glob('../../posts/*.md', { eager: true }))
+  .map(([path, post]) => {
+    
+    const slug = path.split('/').pop().replace('.md', '');
+    return {
+      slug,
+      ...post.frontmatter,
+      url: `/blog/${slug}`
+    };
+  })
+  .sort((a, b) => new Date(b.date) - new Date(a.date));
+---
+
+<h1>Blog</h1>
+<ul>
+  {posts.map(post => (
+    <li>
+      <a href={post.url}>{post.title}</a> — <small>{post.date}</small>
+    </li>
+  ))}
+</ul>
