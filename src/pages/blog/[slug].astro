@@ -1,6 +1,15 @@
 ---
-const { slug } = Astro.params;
 const allPosts = import.meta.glob('../../posts/*.md', { eager: true });
+
+
+export async function getStaticPaths() {
+  return Object.keys(allPosts).map(path => {
+    const slug = path.split('/').pop().replace('.md', '');
+    return { params: { slug } };
+  });
+}
+
+const { slug } = Astro.params;
 const postPath = Object.keys(allPosts).find(path => path.includes(slug));
 
 if (!postPath) {
@@ -9,6 +18,30 @@ if (!postPath) {
 
 const post = allPosts[postPath];
 ---
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    max-width: 700px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    color: #222;
+    background: #f5f5f5;
+  }
+  a {
+    color: #0066cc;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  article {
+    background: white;
+    padding: 1rem;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+</style>
 
 <h1>{post.frontmatter.title}</h1>
 <p><small>{post.frontmatter.date}</small></p>
