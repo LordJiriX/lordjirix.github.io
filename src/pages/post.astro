@@ -1,0 +1,28 @@
+---
+import { getCollection } from 'astro:content';
+import './styles/global.css';
+
+const posts = await getCollection('blog');
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>LordJiriX's blog</title>
+  </head>
+  <body>
+    <main class="container">
+      <h1>Můj blog</h1>
+      <ul class="post-list">
+        {posts.map(post => (
+          <li key={post.slug}>
+            <a href={`/blog/${post.slug}`} class="post-link">
+              {post.data.title}
+            </a>
+            <p class="post-date">{post.data.date}</p>
+          </li>
+        ))}
+      </ul>
+    </main>
+  </body>
+</html>
