@@ -1,0 +1,27 @@
+---
+import { getEntryBySlug } from 'astro:content';
+import { Markdown } from 'astro/components';
+import '../../styles/global.css';
+
+const { slug } = Astro.params;
+const post = await getEntryBySlug('blog', slug);
+
+if (!post) {
+  throw new Error(`Post name: '${slug}' is 404`);
+}
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{post.data.title}</title>
+  </head>
+  <body>
+    <main class="container">
+      <a href="/" class="back-link">← Back</a>
+      <h1>{post.data.title}</h1>
+      <p class="post-date">{post.data.date}</p>
+      <Markdown content={post.body} />
+    </main>
+  </body>
+</html>
