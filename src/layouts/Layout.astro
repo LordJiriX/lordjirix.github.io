@@ -9,6 +9,12 @@ const { title } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
+      <div class="topnav">
+            <a href="https://www.curseforge.com/members/lordjirix/projects">CourseForge</a>
+            <a href="https://modrinth.com/user/LordJiriX">Modrinth</a>
+            <a href="https://github.com/LordJiriX/">Github</a>
+            <a href="https://lordjirix.github.io">Home</a>
+      </div>
 	<body>
 		<slot />
 	</body>
@@ -22,4 +28,17 @@ const { title } = Astro.props;
 		width: 100%;
 		height: 100%;
 	}
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
 </style>
