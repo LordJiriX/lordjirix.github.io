@@ -1,5 +1,9 @@
 ---
-import Layout from '../layouts/Layout.astro';
+interface Props {
+  error: unknown;
+}
+
+const { error } = Astro.props;
 ---
 
 <Layout title="LordJiriX">
@@ -26,10 +30,7 @@ import Layout from '../layouts/Layout.astro';
      <br>
     <h1> -- Astro Build -- </h1>
     <pre>
-> [build 🔨] <span class="error">Error:</span> Cannot find module 'render'
-    at https://github.com/LordJiriX/lordjirix.github.io/src/pages/index.astro:5:7
-    at async ModuleLoader.loadModule (/astro/runtime/loader.js:77:15)
-    at async App.render (/astro/runtime/core.js:102:9)
+> [build 🔨] <span class="error">Error:</span> {error instanceof Error ? error.message : "Unknown error"}
     </pre>
     
 </Layout>
