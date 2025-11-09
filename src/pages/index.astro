@@ -2,5 +2,34 @@
 import Layout from '../layouts/Layout.astro';
 ---
 <Layout title="LordJiriX">
-  <p>Error at io.github.lordjirix.init init() not exist</p>
+  
+    <style>
+      body {
+        background-color: #111;
+        color: #0f0;
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+      }
+      .error {
+        color: #f55;
+      }
+      pre {
+        background: #000;
+        padding: 1rem;
+        border: 1px solid #333;
+        border-radius: 6px;
+        overflow-x: auto;
+      }
+    </style>
+  
+  <body>
+    <h1>🚨 Astro Build Failed</h1>
+    <pre>
+> [build 0s] <span class="error">Error:</span> Cannot find module 'react'
+    at file:///src/components/ErrorPage.astro:5:7
+    at async ModuleLoader.loadModule (/astro/runtime/loader.js:77:15)
+    at async App.render (/astro/runtime/core.js:102:9)
+    </pre>
+    <p>🧠 Tip: Ujisti se, že máš nainstalovány všechny závislosti pomocí <code>npm install</code>.</p>
+  </body>
 </Layout>
