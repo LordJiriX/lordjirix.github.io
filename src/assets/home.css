@@ -1,0 +1,66 @@
+.homepage {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #1e293b 0%, #64748b 100%);
+    min-height: 100vh;
+    color: #fff;
+    padding: 0 2rem;
+}
+.hero {
+    text-align: center;
+    padding: 6rem 0 3rem 0;
+}
+.hero h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+}
+.subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    color: #cbd5e1;
+}
+.cta-button {
+    display: inline-block;
+    background: #38bdf8;
+    color: #1e293b;
+    padding: 0.75rem 2rem;
+    border-radius: 999px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+.cta-button:hover {
+    background: #0ea5e9;
+}
+.urls-section {
+    background: rgba(30, 41, 59, 0.85);
+    border-radius: 1rem;
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 600px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+}
+.urls-section h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+.url-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.url-list li {
+    margin: 1rem 0;
+    text-align: center;
+}
+.url-list a {
+    color: #38bdf8;
+    font-size: 1.1rem;
+    text-decoration: underline;
+    transition: color 0.2s;
+}
+.url-list a:hover {
+    color: #0ea5e9;
+}
