@@ -1,10 +1,9 @@
 ---
-const { title,
-        info: "LordJiriX's website"
-       } = Astro.props;
+const { title = "LordJiriX" } = Astro.props;
 ---
 <html lang="en">
 	<head>
+		<link rel="stylesheet" href="/src/assets/home.css" />
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -43,5 +42,4 @@ const { title,
 	</body>
 
 </html>
-
 
