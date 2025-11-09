@@ -1,0 +1,35 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="LordJiriX">
+  
+    <style>
+      body {
+        background-color: #111;
+        color: #0f0;
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+      }
+      .error {
+        color: #f55;
+      }
+      pre {
+        background: #000;
+        padding: 1rem;
+        border: 1px solid #333;
+        border-radius: 6px;
+        overflow-x: auto;
+      }
+    </style>
+     <br>
+     <br>
+    <h1> -- Astro Build -- </h1>
+    <pre>
+> [build 🔨] <span class="error">Error:</span> Cannot find module 'render'
+    at https://github.com/LordJiriX/lordjirix.github.io/src/pages/index.astro:5:7
+    at async ModuleLoader.loadModule (/astro/runtime/loader.js:77:15)
+    at async App.render (/astro/runtime/core.js:102:9)
+    </pre>
+    
+</Layout>
